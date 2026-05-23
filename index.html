@@ -117,6 +117,10 @@
             (o.DocumentTouch && c instanceof DocumentTouch)) &&
             (n.className += t + "touch"));
       })(window, document);
+      // Immediately add w-mod-ix3 on mobile viewports to prevent permanent invisibility
+      if (window.innerWidth < 992) {
+        document.documentElement.classList.add("w-mod-ix3");
+      }
     </script>
     <link
       href="https://cdn.prod.website-files.com/6891fea56371a402aee851dc/68a6145fb3525399bf267f4a_favicon-1.png"
@@ -440,6 +444,171 @@
               #projects {
                 padding-top: 2rem !important;
                 margin-top: -3.5rem !important;
+              }
+
+              /* Prevent horizontal scroll globally */
+              html, body, .page-wrapper {
+                max-width: 100% !important;
+                overflow-x: hidden !important;
+              }
+
+              /* Force show FOUC hidden elements on mobile if JS animation engine is disabled or fails */
+              @media screen and (max-width: 991px) {
+                html.w-mod-js:not(.w-mod-ix3) :is(
+                  [data-fade-in-stagger="line"],
+                  [data-fade-in-stagger="word"],
+                  [data-fade-in="element"],
+                  [data-parallax-animation="image"],
+                  .tab-content-image,
+                  .tool-shadow-wrapp,
+                  .page-load-text,
+                  .nova-box-component,
+                  .nova-eye,
+                  .nova-box,
+                  .page-load-animation-content,
+                  .nova-box-noise,
+                  .nova-component,
+                  .page-load-button-wrapper,
+                  .orbit-mars-wrapper,
+                  .orbit-mars-image-description,
+                  .orbit-circle,
+                  .orbit-earth-wrapper,
+                  .intro-title,
+                  .intro-copy,
+                  .mars-sticky,
+                  .temperature-line,
+                  .temperature-row-title,
+                  .temperature-row-description,
+                  .temperature-row-divider,
+                  .scroll-down-info,
+                  .astronaut-description-line,
+                  .astronaut-description,
+                  .astronaut-image.is-lighten,
+                  .astronaut-bg-lines-wrapper,
+                  .tool-content-inner,
+                  .tool-name,
+                  .tool-shadow-shape,
+                  [data-tool-name="energy"],
+                  [data-tool-name="rover"],
+                  [data-tool-name="dome"],
+                  [data-tool-name="relay"],
+                  [data-tool-name="lander"],
+                  [data-tool-description="energy"],
+                  [data-tool-description="rover"],
+                  [data-tool-description="dome"],
+                  [data-tool-description="relay"],
+                  [data-tool-description="lander"],
+                  .facts-title-wrapper,
+                  .facts-wrapper,
+                  .facts-item-image
+                ) {
+                  visibility: visible !important;
+                }
+              }
+
+              /* Mobile Navbar & Layout Responsiveness */
+              @media screen and (max-width: 767px) {
+                .navbar-container {
+                  flex-flow: row wrap !important;
+                  gap: 0.5rem 1rem !important;
+                  padding: 1rem 0.5rem !important;
+                  justify-content: center !important;
+                }
+                .nav-link {
+                  font-size: 0.75rem !important;
+                  padding: 0.3rem 0.6rem !important;
+                }
+                .navbar {
+                  background: rgba(0, 0, 0, 0.8) !important;
+                }
+                .section-stage-orbit {
+                  padding-top: 100px !important;
+                }
+                .intro-title {
+                  margin-left: 0 !important;
+                  text-align: center !important;
+                  font-size: 14vw !important;
+                }
+              }
+
+              @media screen and (max-width: 479px) {
+                .navbar-container {
+                  gap: 0.3rem 0.6rem !important;
+                  padding: 0.8rem 0.3rem !important;
+                }
+                .nav-link {
+                  font-size: 0.7rem !important;
+                  padding: 0.2rem 0.4rem !important;
+                }
+                .section-stage-orbit {
+                  padding-top: 90px !important;
+                }
+              }
+
+              /* Mobile Projects Tabs & Stacked Details Layout */
+              @media screen and (max-width: 767px) {
+                .tab-menu {
+                  display: flex !important;
+                  flex-wrap: wrap !important;
+                  justify-content: center !important;
+                  gap: 0.5rem !important;
+                  padding: 1rem 0.5rem !important;
+                }
+                .tab-menu-link {
+                  padding: 0.4rem 0.8rem !important;
+                  font-size: 0.75rem !important;
+                  margin: 0 !important;
+                  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                  border-radius: 4px !important;
+                }
+                .tab-menu-link.w--current {
+                  background: rgba(255, 255, 255, 0.1) !important;
+                  border-color: #ff6b35 !important;
+                }
+                .tool-tab-item {
+                  display: flex !important;
+                  flex-direction: column !important;
+                  height: auto !important;
+                  padding: 1rem !important;
+                }
+                .tool-name {
+                  position: static !important;
+                  font-size: clamp(1.5rem, 8vw, 3rem) !important;
+                  white-space: normal !important;
+                  text-align: center !important;
+                  margin-bottom: 1rem !important;
+                }
+                .tool-content-inner {
+                  position: static !important;
+                  height: auto !important;
+                }
+                .tool-image-wrapper {
+                  min-height: 360px !important;
+                  gap: 1rem !important;
+                }
+                .tool-description-wrapper {
+                  position: static !important;
+                  max-width: 100% !important;
+                  margin-top: 1.5rem !important;
+                  text-align: center !important;
+                  display: flex !important;
+                  flex-direction: column !important;
+                  align-items: center !important;
+                }
+                .project-tags {
+                  justify-content: center !important;
+                }
+              }
+
+              @media screen and (max-width: 479px) {
+                .tab-menu-link {
+                  padding: 0.3rem 0.6rem !important;
+                  font-size: 0.7rem !important;
+                }
+                .tool-image-wrapper {
+                  min-height: 280px !important;
+                  gap: 0.8rem !important;
+                }
               }
             </style>
           </div>
@@ -1794,6 +1963,41 @@
         }
         document.addEventListener('click', handleAnchorClick, { capture: true, passive: false });
       })();
+    </script>
+    <script>
+      // Fallback for mobile and slow connections
+      document.addEventListener("DOMContentLoaded", function() {
+        // 1. On mobile viewports, immediately set prevent-flicker-page-overlay to none
+        if (window.innerWidth < 992) {
+          const overlay = document.querySelector(".prevent-flicker-page-overlay");
+          if (overlay) overlay.style.display = "none";
+        }
+        
+        // 2. Setup manual fallback for the "Enter Portfolio" loader button
+        const enterBtn = document.querySelector('[data-page-load-animation="button"]');
+        if (enterBtn) {
+          enterBtn.addEventListener("click", function() {
+            // Hide the loader screen if Webflow script did not handle it
+            const loader = document.querySelector(".page-load-animation-content");
+            if (loader) {
+              loader.style.transition = "opacity 0.5s ease, visibility 0.5s";
+              loader.style.opacity = "0";
+              loader.style.visibility = "hidden";
+              setTimeout(() => {
+                loader.style.display = "none";
+              }, 500);
+            }
+          });
+        }
+
+        // 3. Safety fallback: hide loader overlay after 2 seconds regardless of device, in case scripts crash
+        setTimeout(function() {
+          const overlay = document.querySelector(".prevent-flicker-page-overlay");
+          if (overlay && window.getComputedStyle(overlay).display !== "none") {
+            overlay.style.display = "none";
+          }
+        }, 2000);
+      });
     </script>
   </body>
 </html>
